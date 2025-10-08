@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "../components/UserTable.tsx";
 import type { TableColumn } from "../components/UserTable";
-import { fetchUsers  } from "../api/UserApi.tsx";
-import type  { GetUser } from "../api/UserApi.tsx";
-
-
-
+import { fetchUsers } from "../api/UserApi.tsx";
+import type { GetUser } from "../api/UserApi.tsx";
 
 export default function UsersTable() {
-
     const [data, setData] = useState<GetUser[]>([]);
     const [loading, setLoading] = useState(true);
-
-
-
 
     /* interface User {
       id: number;
@@ -34,13 +27,24 @@ export default function UsersTable() {
             header: "Action",
             accessor: "action",
             render: () => (
-                <button
-                    className="text-blue-600 hover:underline"
-                // onClick={() => alert(`Edit ${row.name}`)}
-                >
-                    delete
-                </button>
+                <div className="flex gap-1">
+                    <button
+                        className="text-blue-600 hover:underline"
+                    // onClick={() => alert(`Edit ${row.name}`)}
+                    >
+                        delete /
+                    </button>
+
+                    <button
+                        className="text-blue-600 hover:underline"
+                    // onClick={() => alert(`Edit ${row.name}`)}
+                    >
+                        edit
+                    </button>
+                </div>
+
             ),
+
         },
     ];
 
@@ -53,7 +57,7 @@ export default function UsersTable() {
         }
         getUser();
     }, [])
-    
+
 
     if (loading) return <p>Loading user....</p>
     return (
