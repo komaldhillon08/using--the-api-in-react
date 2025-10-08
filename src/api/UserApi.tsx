@@ -50,6 +50,19 @@ export const addUser = async (user: {
         console.error("Add User Error:", error);
         return null;
     }
-} 
+}
 
 // delete api 
+export const userDelete = async (id: number): Promise<void> => {
+    try {
+        const response = await fetch(`https://68e5fc2c21dd31f22cc3a1e0.mockapi.io/api/v1/user/User/${id} `,
+            { method: "DELETE", })
+
+        if (!response.ok) {
+            throw new Error("failed to delete  user")
+        }
+        console.log(`User with ID ${id} deleted successfully`);
+    } catch (error) {
+        console.error("user not delete" , error)
+    }
+};

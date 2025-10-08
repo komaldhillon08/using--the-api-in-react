@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "../components/UserTable.tsx";
 import type { TableColumn } from "../components/UserTable";
-import { fetchUsers } from "../api/UserApi.tsx";
+import { fetchUsers, userDelete } from "../api/UserApi.tsx";
 import type { GetUser } from "../api/UserApi.tsx";
 
 export default function UsersTable() {
@@ -26,11 +26,13 @@ export default function UsersTable() {
         {
             header: "Action",
             accessor: "action",
-            render: () => (
+            render: (row) => (
                 <div className="flex gap-1">
                     <button
                         className="text-blue-600 hover:underline"
-                    // onClick={() => alert(`Edit ${row.name}`)}
+                        // onClick={() => alert(`Edit ${row.name}`)}
+                        // onClick={() => handleDelete(row.id)}
+                        onClick={() => handleDelete(row.id)}
                     >
                         delete /
                     </button>
@@ -48,7 +50,7 @@ export default function UsersTable() {
         },
     ];
 
-
+    // get user in get api 
     useEffect(() => {
         const getUser = async () => {
             const users = await fetchUsers();
@@ -57,6 +59,16 @@ export default function UsersTable() {
         }
         getUser();
     }, [])
+
+
+    // delete  user 
+
+    const handleDelete = async (id: number) => {
+        if (!window.confirm("Are you sure you want to delete this user?")) return;
+        await userDelete(id);
+        alert("User deleted successfully!");
+        fetchUsers(); // Refresh table
+    };
 
 
     if (loading) return <p>Loading user....</p>
