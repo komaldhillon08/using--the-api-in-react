@@ -30,19 +30,8 @@ export default function UsersTable() {
                 <div className="flex gap-1">
                     <button
                         className="text-blue-600 hover:underline"
-                        // onClick={() => alert(`Edit ${row.name}`)}
-                        // onClick={() => handleDelete(row.id)}
-                        onClick={() => handleDelete(row.id)}
-                    >
-                        delete /
-                    </button>
-
-                    <button
-                        className="text-blue-600 hover:underline"
-                    // onClick={() => alert(`Edit ${row.name}`)}
-                    >
-                        edit
-                    </button>
+                        onClick={() => handleDelete(row.id)}>  delete /</button>
+                    <button className="text-blue-600 hover:underline">    edit</button>
                 </div>
 
             ),

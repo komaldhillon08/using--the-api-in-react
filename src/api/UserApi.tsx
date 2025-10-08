@@ -17,6 +17,8 @@ export const fetchUsers = async (): Promise<GetUser[]> => {
         return [];
     }
 };
+
+
 // post api in login 
 export interface PostUserApi {
     id: number;
@@ -51,6 +53,8 @@ export const addUser = async (user: {
         return null;
     }
 }
+
+
 
 // delete api 
 export const userDelete = async (id: number): Promise<void> => {
